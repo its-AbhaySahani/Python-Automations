@@ -1,9 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
-import csv
 
-
+# Define the URL for the Flipkart search results page
 base_url = 'https://www.flipkart.com/search?q=smartphones'
 
 # Initialize empty lists to store the scraped data
@@ -23,7 +22,9 @@ def scrape_flipkart(page_number):
     
     for container in product_containers:
         # Scrape product name
-        name = container.find("div", {"class": "_4rR01T"})
+        name = container.find("a", {"class": "IRpwTa"})
+        if not name:  # Try another class if first fails
+            name = container.find("div", {"class": "_4rR01T"})
         if name:
             product_names.append(name.text)
         else:
@@ -52,7 +53,7 @@ def scrape_flipkart(page_number):
             product_reviews.append("N/A")
 
 
-for page in range(1, 6):  # Adjust the range for more pages
+for page in range(1, 6):  
     scrape_flipkart(page)
 
 
