@@ -11,7 +11,7 @@ product_prices = []
 product_ratings = []
 product_reviews = []
 
-# Function to scrape the Flipkart page
+# Function to scrape the Flipkart 
 def scrape_flipkart(page_number):
     url = f"{base_url}&page={page_number}"
     response = requests.get(url)
