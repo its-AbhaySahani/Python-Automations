@@ -12,4 +12,9 @@ data = response.json()
 for post in data[:5]:
     print(post)
 
-    
+# check the status code of teh response
+print(response.status_code)
+
+# check the content type of the response headers
+print(response.headers['Content-Type'])
+
