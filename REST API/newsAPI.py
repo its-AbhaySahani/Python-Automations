@@ -10,9 +10,18 @@ def NewsfromBBC():
     # fetching data in json format
     res = requests.get(main_url, params=query_params)
     open_bbc_page = res.json()
-    # getting all articles in a string article
-    article = open_bbc_page["articles"]
-    results = []
-    for ar in article:
-        results.append(ar["title"])
-    return results
+   # check if the response contains article or not
+    if open_bbc_page["status"] == "ok":
+        # getting all articles in a string article
+        article = open_bbc_page["articles"]
+        results = []
+        for ar in article:
+            results.append(ar["title"])
+        return results
+    else:
+        return "Error in fetching news"
+    
+    # print all trending news
+    for i in range(len(results)):
+        print(i + 1, results[i])
+    
