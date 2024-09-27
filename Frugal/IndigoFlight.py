@@ -1,5 +1,6 @@
 import datetime
 import time
+import logging
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -21,12 +22,20 @@ class IndigoFlightBook:
         self.close_pop_up()
 
     def close_pop_up(self):
+        wait = WebDriverWait(self.driver, 10) # Wait for 10 seconds
         try:
-            pop_up_close = self.driver.find_element(By.XPATH, "//a[@class='close-cookie accept-cookies__block--close']")
-            pop_up_close.click()
-            time.sleep(2)
-        except Exception as e:
-            print("No pop-up found or error in closing pop-up:", e)
+            # Wait for the pop-up's close button and click it
+            close_ad = wait.until(EC.element_to_be_clickable((By.XPATH, "//span[@class='flight-close']")))
+            close_ad.click()
+            logging.info("Advertisement closed")
+        except:
+            print("No advertisement found.")
+        time.sleep(5)
+        # Step 2: Click on "Book" option
+        book_dropdown = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[contains(@class,'headerv2__navbar-item') and contains(text(), 'Book')]")))
+        book_dropdown.click()
+        logging.info("Clicked on 'Book' button")
+        time.sleep(5)
 
     def cookie_handle(self):
         cookie_close = self.driver.find_element(By.XPATH, "//a[@class='close-cookie accept-cookies__block--close']")
