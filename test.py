@@ -24,6 +24,7 @@ def longest_peak_interval(heights):
     
     return longest_length
 
+
 # Read input
 heights = 2, 1, 4, 7, 3, 2, 5, 1
 
