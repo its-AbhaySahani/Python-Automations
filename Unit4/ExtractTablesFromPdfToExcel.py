@@ -15,12 +15,12 @@ def create_table_pdf(output="table.pdf"):
     c.drawString(100, 750, "Name")
     c.drawString(200, 750, "Age")
     c.drawString(300, 750,  "City")
-    c.drawString(100, 700, "Alice")
-    c.drawString(200, 700, "25")
-    c.drawString(300, 700, "New York")
-    c.drawString(100, 650, "Bob")
-    c.drawString(200, 650, "30")
-    c.drawString(300, 650, "Los Angeles")
+    c.drawString(100, 700, "Abhay")
+    c.drawString(200, 700, "21")
+    c.drawString(300, 700, "Mumbai")
+    c.drawString(100, 650, "Aman")
+    c.drawString(200, 650, "24")
+    c.drawString(300, 650, "GorakhPur")
     c.save()
 
 def extract_table(input_pdf, output_excel):
