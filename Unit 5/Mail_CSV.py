@@ -43,6 +43,27 @@ def fetch_email():
                 date_ = msg.get("Date")
 
                 # extract email body
+                if msg.is_multipart():
+                    for part in msg.walk():
+                        content_type = part.get_content_type()
+                        content_disposition = str(part.get("Content-Disposition"))
+                        try:
+                            body = part.get_payload(decode=True).decode()
+                        except:
+                            pass
+                        if content_type == "text/plain" and "attachment" not in content_disposition:
+                            print(body)
+                else:
+                    content_type = msg.get_content_type()
+                    body = msg.get_payload(decode=True).decode()
+                    if content_type == "text/plain":
+                        print(body)
+
+                if content_type == "text/plain":    
+                    emails.append([date_, from_, subject, body])
+    return emails
+
+
                 
 
                 
